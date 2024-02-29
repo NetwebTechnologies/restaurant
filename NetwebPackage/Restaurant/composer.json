@@ -1,0 +1,20 @@
+{
+    "name": "netweb/restaurant",
+    "description": "This Package includes the restaurant functionality",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ankit Madaan",
+            "email": "ankitcoding1990@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Netweb\\Restaurant\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "laravelcollective/html": "*"
+    }
+}
