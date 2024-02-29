@@ -1,10 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "NetwebTechnologies/Restaurant",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Restaurant package that can be used for both inside some another project or as a individual module",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "NetwebTechnologies",
+        "Restaurant Module"
     ],
     "license": "MIT",
     "require": {
