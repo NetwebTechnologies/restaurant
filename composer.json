@@ -1,6 +1,6 @@
 {
     "name": "netweb-technologies/restaurant-module",
-    "type": "project",
+    "type": "library",
     "description": "Restaurant package that can be used for both inside some another project or as a individual module",
     "keywords": [
         "framework",
