@@ -13,6 +13,13 @@
             "Netweb\\Restaurant\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Netweb\\Restaurant\\RestaurantServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "require": {
         "laravelcollective/html": "*"

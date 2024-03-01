@@ -3,15 +3,31 @@
 namespace Netweb\Restaurant;
 
 use Illuminate\Support\ServiceProvider;
+use Settings;
 
 class RestaurantServiceProvider extends ServiceProvider {
     public function boot() {
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/views', 'restaurant');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        // $this->mergeConfigFrom(__DIR__.'/config/restaurant.php', 'restaurant');
+        // Load Routes
+        $this->loadRoutesFrom(__DIR__ . '/routes/restaurant.php');
 
-        // $this->publishes(__DIR__.'/config/restaurant.php', config_path('restaurant.php'));
+        $this->loadViewsFrom(__DIR__.'/views', 'restaurant');
+
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        $this->mergeConfigFrom(__DIR__.'/config/restaurant.php', 'restaurant');
+
+        // Publish Config
+        $this->publishes([
+            __DIR__.'/config/restaurant.php' => config_path('restaurant.php')
+        ], Settings::$KEY_PROVIDER);
+
+        // Publish Migrations
+        $this->publishes([
+            __DIR__ . '/database/migrations/2024_02_21_113013_create_restaurant_names_table.php' =>
+            database_path('/migrations/2024_02_21_113013_create_restaurant_names_table.php'),
+            __DIR__ . '/database/migrations/2024_02_27_054842_create_restaurant_types_table.php' =>
+            database_path('/migrations/2024_02_27_054842_create_restaurant_types_table.php')
+        ], Settings::$KEY_PROVIDER);
 
     }
 
