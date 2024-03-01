@@ -8,7 +8,7 @@ use Settings;
 class RestaurantServiceProvider extends ServiceProvider {
     public function boot() {
         // Load Routes
-        $this->loadRoutesFrom(__DIR__ . '/routes/restaurant.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/nwt-restaurant.php');
 
         $this->loadViewsFrom(__DIR__.'/views', 'restaurant');
 
