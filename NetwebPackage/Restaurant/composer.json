@@ -17,6 +17,12 @@
         "laravel": {
             "providers": [
                 "Netweb\\Restaurant\\RestaurantServiceProvider"
+            ],
+            "publish": [
+                {
+                    "from": "src/config/restaurant.php",
+                    "to": "config/restaurant.php"
+                }
             ]
         }
     },
