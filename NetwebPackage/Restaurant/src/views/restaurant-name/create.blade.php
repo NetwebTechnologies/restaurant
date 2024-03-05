@@ -1,15 +1,4 @@
-@php
-// dd($restaurantName);
-        $method = 'post';
-        $route = 'restaurant-name.store';
-        $button = 'Save';
-        if (isset($model)) {
-            $method = 'put';
-            $route = ['restaurant-name.update', $model->id];
-            $button = 'Update';
-        }
-@endphp
-{!! Form::model($model ?? [], ['route' => $route, 'method' => $method, 'onSubmit="ajaxFormSubmission($(this))"']) !!}
+{!! Form::open(['route' => 'restaurant-name.store', 'method' => 'post', 'onSubmit="ajaxFormSubmission($(this))"']) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
@@ -34,6 +23,6 @@
         </div>
     </div>
     <div class="restaurant-submission mt-2">
-        {!! Form::submit($button, ['class' => 'btn btn-primary', 'id' => 'restaurant_submit']) !!}
+        {!! Form::submit('Save', ['class' => 'btn btn-primary', 'id' => 'restaurant_submit']) !!}
     </div>
 {!! Form::close() !!}

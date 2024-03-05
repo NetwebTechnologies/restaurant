@@ -2,48 +2,29 @@
 
 namespace Netweb\Restaurant\Repositories;
 
-use Netweb\Restaurant\Interfaces\CrudRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 use Netweb\Restaurant\Models\RestaurantType;
+use Netweb\Restaurant\Repositories\MyRepository;
 
-class RestaurantTypeRepository implements CrudRepositoryInterface {
-    public static function store($data) {
-        try {
-            $model = RestaurantType::create($data);
-            if($model) {
-                return [
-                    'status' => true,
-                    'code' => 200,
-                    'message' => 'Restaurant Name is created Successfully',
-                    'model' => $model
-                ];
-            }
-            throw new \Exception('Something went wrong!', 1);
-        } catch (\Throwable $th) {
-            return [
-                'status' => false,
-                'code' => 400,
-                'message' => $th->getMessage()
-            ];
-        }
+class RestaurantTypeRepository extends MyRepository
+{
+    public function __construct()
+    {
+        $this->model         = $this->setRepoModel();
+        $this->storeMessage  = $this->storeMessage();
+        $this->updateMessage = $this->updateMessage();
     }
-    public static function update($data, $id) {
-        try {
-            $model = RestaurantType::find($id);
-            if($model->update($data)) {
-                return [
-                    'status' => true,
-                    'code' => 200,
-                    'message' => 'Restaurant Name is updated Successfully',
-                    'model' => $model
-                ];
-            }
-            throw new \Exception('Something went wrong!', 1);
-        } catch (\Throwable $th) {
-            return [
-                'status' => false,
-                'code' => 400,
-                'message' => $th->getMessage()
-            ];
-        }
+
+    public function setRepoModel() : Model
+    {
+        return new RestaurantType;
+    }
+    public function storeMessage() : String
+    {
+        return 'Restaurant Name is created Successfully';
+    }
+    public function updateMessage() : String
+    {
+        return 'Restaurant Name is updated Successfully';
     }
 }

@@ -22,26 +22,27 @@ class RestaurantTypeController extends CrudController
     }
     public function setModel() : Model
     {
-        return new RestaurantType; // return model Instance
+        return new RestaurantType;
     }
-    public function setService()
+    public function setService() : RestaurantTypeService
     {
-        return new RestaurantTypeService; // return Service
+        return new RestaurantTypeService;
     }
     public function createForm() : String
     {
-        return 'restaurant::restaurant-type.form'; // return create form file
+        return 'restaurant::restaurant-type.create';
     }
     public function editForm() : String
     {
-        return 'restaurant::restaurant-type.form'; // return edit form file
+        return 'restaurant::restaurant-type.edit';
     }
     public function indexFile() : String
     {
-        return 'restaurant::restaurant-type.index'; // return edit form file
+        return 'restaurant::restaurant-type.index';
     }
-    public function setRequest()
+    public function setRequest() : String
     {
-        return RestaurantTypeRequest::class; // return edit form file
+        return RestaurantTypeRequest::class;
     }
+
 }

@@ -1,0 +1,65 @@
+
+#nwt-restaurant-app .routes-links ul {
+    gap: 10px;
+}
+#nwt-restaurant-app .routes-links ul li>a {
+    color: black;
+    text-decoration: none;
+    padding: 1px 6px
+}
+#nwt-restaurant-app .routes-links ul li {
+    color: black;
+    text-decoration: none;
+    padding: 1px;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(45deg, #1b00ff, #2affef);
+    border-image-slice: 1;
+}
+#nwt-restaurant-app .routes-links ul li:hover {
+    background: linear-gradient(45deg, #1b00ff, #2affef);
+    text-decoration: none;
+    border-radius: 5px;
+}
+#nwt-restaurant-app .routes-links ul li:hover>a {
+    color: white;
+}
+
+#nwt-restaurant-app td.action-td {
+    display: flex;
+    gap: 8px;
+}
+#nwt-restaurant-app td.action-td .action-btn {
+    padding: 1px 8px;
+    height: 25px;
+}
+#nwt-restaurant-app td.status-column .status {
+    padding: 2px 8px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 3px 3px 0px 1px #d1d1d1;
+    cursor: pointer;
+}
+#nwt-restaurant-app input[type=submit] {
+    padding: 1px 10px 2px;
+}
+
+#nwt-restaurant-app .add-record-btn button {
+    float: right ;
+}
+
+
+#nwt-restaurant-app td.action-td {
+    display: flex;
+    gap: 8px;
+}
+#nwt-restaurant-app td.action-td .action-btn {
+    padding: 1px 8px;
+    height: 25px;
+}
+#nwt-restaurant-app td.status-column .status {
+    padding: 2px 8px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 3px 3px 0px 1px #d1d1d1;
+    cursor: pointer;
+}

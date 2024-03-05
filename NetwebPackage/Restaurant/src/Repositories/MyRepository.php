@@ -2,56 +2,77 @@
 
 namespace Netweb\Restaurant\Repositories;
 
-class MyRepository {
+use Netweb\Restaurant\Interfaces\CrudRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Response as HttpResponse;
+use Netweb\Restaurant\Helpers\Response;
+use Netweb\Restaurant\Traits\Responses;
 
-    protected $model, $messageModelName;
-    public function __construct($model)
+abstract class MyRepository implements CrudRepositoryInterface
+{
+    use Responses;
+
+    protected Model $model;
+    protected $storeMessage, $updateMessage;
+
+    abstract function setRepoModel();
+    abstract function storeMessage();
+    abstract function updateMessage();
+
+    /**
+     * Store a newly created resource in DB.
+     *
+     * @param array $data
+     */
+    public function store(array $data)
     {
-        $this->model = $model;
-        $this->messageModelName = self::getMessaggeModel($this->model);
-    }
-    public function store($data) {
         try {
             $model = $this->model::create($data);
             if($model) {
-                return [ 'status' => true, 'code' => 200, 'message' => $this->messageModelName . ' is created Successfully', 'model' => $model ];
+                return $this->createResponse($model);
+
             }
             throw new \Exception('Something went wrong!', 1);
         } catch (\Throwable $th) {
-            return [
-                'status' => false,
-                'code' => 400,
-                'message' => $th->getMessage()
-            ];
-        }
-    }
-    public function update($data, $id) {
-        try {
-            $model = $this->model::find($id);
-            if($model->update($data)) {
-                return [
-                    'status' => true,
-                    'code' => 200,
-                    'message' => $this->messageModelName . ' is updated Successfully',
-                    'model' => $model
-                ];
-            }
-            throw new \Exception('Something went wrong!', 1);
-        } catch (\Throwable $th) {
-            return [
-                'status' => false,
-                'code' => 400,
-                'message' => $th->getMessage()
-            ];
+            return $this->createErrorResponse($th);
         }
     }
 
-    public static function getMessaggeModel($model) {
-        $string = $model;
-        $parts = explode('\\', $string);
-        $className = end($parts);
-        $words = preg_split('/(?=[A-Z])/', $className);
-        $restaurantName = implode(' ', $words);
-        return $restaurantName;
+    /**
+     * Update specific resource.
+     *
+     * @param array $data
+     * @param int $id
+     */
+    public function update(array $data, int $id)
+    {
+        try {
+            if (!empty($id)) {
+                $model = $this->model::finnd($id);
+                $model = null;
+                if(isset($model) && $model->update($data)) {
+                    return $this->createResponse($model);
+                }
+            }
+            throw new \Exception('Something went wrong!', 1);
+        } catch (\Exception $th) {
+            return $this->createErrorResponse($th);
+        }
+    }
+
+    public function destroy(string $id)
+    {
+        try {
+            if (!empty($id)) {
+                $id = decrypt($id);
+                $model = $this->model::find($id);
+                if (isset($model) && $this->model::destroy($id)) {
+                    $this->createResponse([]);
+                }
+            }
+            throw new \Exception('Something went wrong!', 1);
+        } catch (\Throwable $th) {
+            return $this->createErrorResponse($th);
+        }
     }
 }

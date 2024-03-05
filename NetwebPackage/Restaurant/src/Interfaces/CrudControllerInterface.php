@@ -6,9 +6,10 @@ interface CrudControllerInterface
 {
     public function create();
 
-    public function show($id);
+    public function show(string $id); // encrypted
 
-    public function edit($id);
+    public function edit(string $id); // encrypted
 
-    public function destroy($id);
+    public function destroy(string $id); // encrypted
+
 }

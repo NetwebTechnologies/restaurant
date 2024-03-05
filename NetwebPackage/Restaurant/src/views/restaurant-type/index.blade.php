@@ -1,6 +1,6 @@
-@extends('restaurant::layouts.app')
+@extends(config('restaurant.layout'))
 
-@section('content')
+@section(config('restaurant.content'))
     <h2>Restaurant Type</h2>
     <hr>
     <div class="alert-message"></div>
@@ -38,8 +38,3 @@
     </div>
 @endsection
 
-@push('script')
-    {{-- @isset($dataTable)
-        {!! $dataTable->scripts() !!}
-    @endisset --}}
-@endpush

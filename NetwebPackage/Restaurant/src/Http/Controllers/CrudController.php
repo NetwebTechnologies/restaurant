@@ -2,20 +2,16 @@
 
 namespace Netweb\Restaurant\Http\Controllers;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Database\Eloquent\Model;
 use Netweb\Restaurant\Interfaces\CrudControllerInterface;
-
 
 abstract class CrudController implements CrudControllerInterface
 {
-    // protected $model, $editView;
     protected Model $model;
-    protected $service, $createForm, $editForm, $indexFile;
-    protected $setRequest;
-    // protected $modelInstance2;
+    protected $service, $createForm, $editForm, $indexFile, $setRequest;
 
     abstract function setModel();
     abstract function setService();
@@ -24,68 +20,99 @@ abstract class CrudController implements CrudControllerInterface
     abstract function indexFile();
     abstract function setRequest();
 
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index() : Response
     {
+        $modelRecords = collect([]);
         $modelRecords = $this->model::get();
-        return view($this->indexFile, compact('modelRecords'));
+        return response()->view($this->indexFile, compact('modelRecords'));
     }
 
-    public function create()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() : Response
     {
-        return view($this->createForm);
+        return response()->view($this->createForm);
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) : Response
     {
-        if (!($request instanceof $this->setRequest)) {
+        // Validation Check
+        if (!($request instanceof $this->setRequest))
+        {
             $request = app($this->setRequest);
         }
-        $response = $this->service::store($request);
-        return response($response, $response['code']);
+        return $this->service->store($request);
     }
 
-    public function show($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  string  $id (encrypted)
+     * @return \Illuminate\Http\Response
+     */
+    public function show(string $id)
     {
         //
     }
 
-    public function edit($id)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  string  $id (encrypted)
+     * @return \Illuminate\Http\Response
+     */
+    public function edit( string $id) : Response
     {
-        if (!empty($id)) {
+        $model = null;
+        if (!empty($id))
+        {
             $id = decrypt($id);
             $model = $this->model::find($id);
-            if (isset($model)) {
-                return view($this->editForm, ['model' => $model]);
-            }
-            return abort(403, 'Record not found');
+            if (isset($model)) $model = $model;
         }
-        return abort(403, 'Record ID not found');
+        return response()->view($this->editForm, ['model' => $model]);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, int $id) : Response
     {
-        if (!($request instanceof $this->setRequest)) {
+        // Validation Check
+        if (!($request instanceof $this->setRequest))
+        {
             $request = app($this->setRequest);
         }
-        $response = $this->service::update($request, $id);
-        if ($response['status']) {
-            $response['modal'] = 'myModal';
-        }
-        return response($response, $response['code']);
+        return $this->service->update($request, $id);
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $id (encrypted)
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(string $id) : Response
     {
-        $response = ['status' => false, 'code' => 403, 'message' => 'something went wrong'];
-        if (!empty($id)) {
-            $id = decrypt($id);
-            $model = $this->model::find($id);
-            if (isset($model) && $this->model::destroy($id)) {
-                $response = ['status' => true, 'code' => 200, 'message' => 'Record Deleted Successfully'];
-            }
-        }
-        return response($response, $response['code']);
+        return $this->service->destroy($id);
     }
-
 
 }

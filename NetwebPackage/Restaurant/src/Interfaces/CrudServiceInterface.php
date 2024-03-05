@@ -2,9 +2,11 @@
 
 namespace Netweb\Restaurant\Interfaces;
 
+use Illuminate\Http\Request;
+
 interface CrudServiceInterface {
 
-    public static function store($request);
+    public function store(Request $request);
 
-    public static function update($request, $id);
+    public function update(Request $request, int $id);
 }

@@ -38,10 +38,6 @@ function ajaxFormSubmission(
             formInputErrorsClear(form);
             if (response.status) {
                 $(document).find('.alert-message').addClass('alert').addClass('alert-success').html(response.message);
-            } else {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
             }
             if (response.modal != undefined) {
                 $("#" + response.modal).modal("hide");
@@ -52,6 +48,7 @@ function ajaxFormSubmission(
             if (resetForm) {
                 form[0].reset();
             }
+            datatableRefresh();
             if (response.redirect !== undefined) {
                 window.location.href = response.redirect;
             }
@@ -59,11 +56,11 @@ function ajaxFormSubmission(
                 $(document).find('.alert-message').removeClass('alert').removeClass('alert-success').removeClass('alert-danger').html('');
                 window.location.reload();
             }, 1500);
-            datatableRefresh();
 
         },
         error: function (error) {
             packageLoader("stop");
+            console.error(error);
             formInputErrorsClear(form);
             if (error.responseJSON != null) {
                 if (typeof error.responseJSON.errors == "object") {
@@ -79,6 +76,7 @@ function ajaxFormSubmission(
             }, 3000);
         },
         complete: function () {
+            packageLoader("stop");
             form.find('button[type="button"]').prop("disabled", false);
         },
     });

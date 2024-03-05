@@ -2,17 +2,17 @@
 
 namespace Netweb\Restaurant\Services;
 
-use Netweb\Restaurant\Models\RestaurantType;
-use Netweb\Restaurant\Repositories\MyRepository;
-use Netweb\Restaurant\Interfaces\CrudServiceInterface;
+use Illuminate\Http\Request;
+use Netweb\Restaurant\Services\CrudService;
+use Netweb\Restaurant\Repositories\RestaurantTypeRepository;
 
-class RestaurantTypeService implements CrudServiceInterface {
-    public static function store($request) {
+class RestaurantTypeService extends CrudService {
+    public function store(Request $request) {
         $data = $request->only('name');
-        return (new MyRepository(RestaurantType::class))->store($data);
+        return (new RestaurantTypeRepository)->store($data);
     }
-    public static function update($request, $id) {
+    public function update(Request $request, int $id) {
         $data = $request->only('name');
-        return (new MyRepository(RestaurantType::class))->update($data, $id);
+        return (new RestaurantTypeRepository)->update($data, $id);
     }
 }

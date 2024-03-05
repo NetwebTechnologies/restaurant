@@ -23,7 +23,7 @@ class RestaurantServiceProvider extends ServiceProvider {
 
         $this->publishes([
            // Publish views
-            __DIR__.'/views/assets/' => public_path('vendor/nwt-restaurant'),
+           public_path('vendor/nwt-restaurant/') => public_path('vendor/nwt-restaurant'),
         ], 'nwt-restaurant');
 
         // Publish Migrations
@@ -33,7 +33,6 @@ class RestaurantServiceProvider extends ServiceProvider {
             __DIR__ . '/database/migrations/2024_02_27_054842_create_restaurant_types_table.php' =>
             database_path('/migrations/2024_02_27_054842_create_restaurant_types_table.php')
         ], 'nwt-restaurant');
-
 
     }
 

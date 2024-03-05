@@ -2,17 +2,34 @@
 
 namespace Netweb\Restaurant\Services;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Netweb\Restaurant\Services\CrudService;
 use Netweb\Restaurant\Models\RestaurantName;
 use Netweb\Restaurant\Repositories\MyRepository;
-use Netweb\Restaurant\Interfaces\CrudServiceInterface;
+use Netweb\Restaurant\Repositories\RestaurantNameRepository;
 
-class RestaurantNameService implements CrudServiceInterface {
-    public static function store($request) {
+class RestaurantNameService extends CrudService
+{
+    /**
+     * Store data using the provided request object.
+     *
+     * @param  \Illuminate\Http\Request|\App\Http\Requests\YourRequest  $request
+     * @return void
+     */
+
+    public function store(Request $request)
+    {
         $data = $request->only('restaurant_name', 'address', 'phone_number');
-        return (new MyRepository(RestaurantName::class))->store($data);
+        return (new RestaurantNameRepository)->store($data);
     }
-    public static function update($request, $id) {
+    public function update(Request $request, int $id)
+    {
         $data = $request->only('restaurant_name', 'address', 'phone_number');
-        return (new MyRepository(RestaurantName::class))->update($data, $id);
+        return (new RestaurantNameRepository)->update($data, $id);
+    }
+    public function destroy(int $id)
+    {
+        return (new RestaurantNameRepository)->destroy($id);
     }
 }

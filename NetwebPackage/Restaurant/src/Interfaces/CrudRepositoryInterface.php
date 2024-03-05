@@ -5,8 +5,8 @@ namespace Netweb\Restaurant\Interfaces;
 interface CrudRepositoryInterface {
 
     // Prepared Data to be stored
-    public static function store($data);
+    public function store(array $data);
 
     // Prepared Data to be updated along with its id
-    public static function update($data, $id);
+    public function update(array $data, int $id);
 }
