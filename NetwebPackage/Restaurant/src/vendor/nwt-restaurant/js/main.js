@@ -55,7 +55,7 @@ function ajaxFormSubmission(
             setTimeout(() => {
                 // $(document).find('.alert-message').removeClass('alert').removeClass('alert-success').removeClass('alert-danger').html('');
                 window.location.reload();
-            }, 1500);
+            }, 1000);
 
         },
         error: function (error) {

@@ -31,7 +31,7 @@ trait Responses
      * $responseType: JSON | HTML | XML | plain | binary (response()->file('path/to/image.jpg')).
      *
      */
-    public function createErrorResponse( \Exception $exception, string $responseType = null)
+    public function createErrorResponse( \Exception $exception, string $responseType = 'json')
     {
         $statusCode = Response::$HTTP_INTERNAL_SERVER_ERROR;
         $errorMessage = ($exception->getMessage() !== null) ? $exception->getMessage() : 'Something went wrong';

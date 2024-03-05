@@ -28,7 +28,7 @@ class RestaurantNameService extends CrudService
         $data = $request->only('restaurant_name', 'address', 'phone_number');
         return (new RestaurantNameRepository)->update($data, $id);
     }
-    public function destroy(int $id)
+    public function destroy(string $id)
     {
         return (new RestaurantNameRepository)->destroy($id);
     }

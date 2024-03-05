@@ -48,8 +48,7 @@ abstract class MyRepository implements CrudRepositoryInterface
     {
         try {
             if (!empty($id)) {
-                $model = $this->model::finnd($id);
-                $model = null;
+                $model = $this->model::find($id);
                 if(isset($model) && $model->update($data)) {
                     return $this->createResponse($model);
                 }
@@ -65,9 +64,9 @@ abstract class MyRepository implements CrudRepositoryInterface
         try {
             if (!empty($id)) {
                 $id = decrypt($id);
-                $model = $this->model::find($id);
-                if (isset($model) && $this->model::destroy($id)) {
-                    $this->createResponse([]);
+                $resource = $this->model::find($id);
+                if (isset($resource) && $this->model::destroy($id)) {
+                    return $this->createResponse($resource);
                 }
             }
             throw new \Exception('Something went wrong!', 1);

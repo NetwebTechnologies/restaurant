@@ -15,4 +15,8 @@ class RestaurantTypeService extends CrudService {
         $data = $request->only('name');
         return (new RestaurantTypeRepository)->update($data, $id);
     }
+    public function destroy(string $id)
+    {
+        return (new RestaurantTypeRepository)->destroy($id);
+    }
 }

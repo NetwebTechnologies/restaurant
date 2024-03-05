@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
 use Netweb\Restaurant\Interfaces\CrudControllerInterface;
 
 abstract class CrudController implements CrudControllerInterface
@@ -48,7 +49,7 @@ abstract class CrudController implements CrudControllerInterface
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) : Response
+    public function store(Request $request) : JsonResponse
     {
         // Validation Check
         if (!($request instanceof $this->setRequest))
@@ -94,7 +95,7 @@ abstract class CrudController implements CrudControllerInterface
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id) : Response
+    public function update(Request $request, int $id) : JsonResponse
     {
         // Validation Check
         if (!($request instanceof $this->setRequest))
@@ -110,7 +111,7 @@ abstract class CrudController implements CrudControllerInterface
      * @param  string  $id (encrypted)
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id) : Response
+    public function destroy(string $id) : JsonResponse
     {
         return $this->service->destroy($id);
     }
