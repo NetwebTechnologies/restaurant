@@ -23,7 +23,7 @@ class RestaurantServiceProvider extends ServiceProvider {
 
         $this->publishes([
            // Publish views
-           __DIR__.'vendor/nwt-restaurant' => public_path('vendor/nwt-restaurant'),
+           __DIR__.'/vendor/nwt-restaurant' => public_path('vendor/nwt-restaurant'),
         ], 'nwt-restaurant');
 
         // Publish Migrations

@@ -13,11 +13,8 @@ abstract class MyRepository implements CrudRepositoryInterface
     use Responses;
 
     protected Model $model;
-    protected $storeMessage, $updateMessage;
 
     abstract function setRepoModel();
-    abstract function storeMessage();
-    abstract function updateMessage();
 
     /**
      * Store a newly created resource in DB.
