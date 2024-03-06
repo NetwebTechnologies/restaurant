@@ -1,9 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Log;
-
-Log::error('Package Config file working');
-
 return [
 
     /*
