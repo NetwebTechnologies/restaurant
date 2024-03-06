@@ -29,9 +29,9 @@ class RestaurantServiceProvider extends ServiceProvider {
         // Publish Migrations
         $this->publishes([
             __DIR__ . '/database/migrations/2024_02_21_113013_create_restaurant_names_table.php' =>
-            database_path('/migrations/2024_02_21_113013_create_restaurant_names_table.php'),
+            database_path('migrations/2024_02_21_113013_create_restaurant_names_table.php'),
             __DIR__ . '/database/migrations/2024_02_27_054842_create_restaurant_types_table.php' =>
-            database_path('/migrations/2024_02_27_054842_create_restaurant_types_table.php')
+            database_path('migrations/2024_02_27_054842_create_restaurant_types_table.php')
         ], 'nwt-restaurant');
 
     }
