@@ -21,18 +21,18 @@ class RestaurantServiceProvider extends ServiceProvider {
             __DIR__.'/config/restaurant.php' => config_path('restaurant.php')
         ], 'nwt-restaurant');
 
-        $this->publishes([
-           // Publish views
-           __DIR__.'/vendor/nwt-restaurant' => public_path('vendor/nwt-restaurant'),
-        ], 'nwt-restaurant');
+        // $this->publishes([
+        //    // Publish views
+        //    __DIR__.'/vendor/nwt-restaurant' => public_path('vendor/nwt-restaurant'),
+        // ], 'nwt-restaurant');
 
-        // Publish Migrations
-        $this->publishes([
-            __DIR__ . '/database/migrations/2024_02_21_113013_create_restaurant_names_table.php' =>
-            database_path('migrations/2024_02_21_113013_create_restaurant_names_table.php'),
-            __DIR__ . '/database/migrations/2024_02_27_054842_create_restaurant_types_table.php' =>
-            database_path('migrations/2024_02_27_054842_create_restaurant_types_table.php')
-        ], 'nwt-restaurant');
+        // // Publish Migrations
+        // $this->publishes([
+        //     __DIR__ . '/database/migrations/2024_02_21_113013_create_restaurant_names_table.php' =>
+        //     database_path('migrations/2024_02_21_113013_create_restaurant_names_table.php'),
+        //     __DIR__ . '/database/migrations/2024_02_27_054842_create_restaurant_types_table.php' =>
+        //     database_path('migrations/2024_02_27_054842_create_restaurant_types_table.php')
+        // ], 'nwt-restaurant');
 
     }
 
