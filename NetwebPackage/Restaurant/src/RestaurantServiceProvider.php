@@ -7,6 +7,7 @@ use Settings;
 
 class RestaurantServiceProvider extends ServiceProvider {
     public function boot() {
+        // dd(__DIR__.'/config/restaurant.php');
         // Load Routes
         $this->loadRoutesFrom(__DIR__ . '/routes/nwt-restaurant.php');
 
@@ -18,7 +19,7 @@ class RestaurantServiceProvider extends ServiceProvider {
 
         // Publish Config
         $this->publishes([
-            __DIR__.'/config/restaurant.php' => config_path('restaurant.php')
+            __DIR__.'\config\restaurant.php' => config_path('restaurant.php')
         ], 'nwt-restaurant');
 
         // $this->publishes([
