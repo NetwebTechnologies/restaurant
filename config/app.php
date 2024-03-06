@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
-        Netweb\Restaurant\RestaurantServiceProvider::class,
+        \Netweb\Restaurant\RestaurantServiceProvider::class
 
     ],
 
