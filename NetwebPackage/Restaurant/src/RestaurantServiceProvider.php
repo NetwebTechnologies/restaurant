@@ -3,11 +3,10 @@
 namespace Netweb\Restaurant;
 
 use Illuminate\Support\ServiceProvider;
-use Settings;
 
 class RestaurantServiceProvider extends ServiceProvider {
     public function boot() {
-        // Load Routes
+
         $this->loadRoutesFrom(__DIR__ . '/routes/nwt-restaurant.php');
 
         $this->loadViewsFrom(__DIR__.'/views', 'restaurant');
@@ -17,9 +16,9 @@ class RestaurantServiceProvider extends ServiceProvider {
         $this->mergeConfigFrom(__DIR__.'/config/restaurant.php', 'restaurant');
 
         // Publish Config
-        $this->publishes([
-            __DIR__.'/config/restaurant.php' => config_path('restaurant.php')
-        ], 'nwt-restaurant');
+        // $this->publishes([
+        //     __DIR__.'/config/restaurant.php' => config_path('restaurant.php')
+        // ], 'nwt-restaurant');
 
         // $this->publishes([
         //    // Publish views
