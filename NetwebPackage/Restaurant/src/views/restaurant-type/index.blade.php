@@ -1,6 +1,6 @@
-@extends(config('restaurant.layout'))
+@extends('restaurant::layouts.app')
 
-@section(config('restaurant.content'))
+@section('content')
     <h2>Restaurant Type</h2>
     <hr>
     <div class="alert-message"></div>
