@@ -2,18 +2,24 @@
 
 namespace Netweb\Restaurant;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 class RestaurantServiceProvider extends ServiceProvider {
     public function boot() {
+        Log::error('RestaurantServiceProvider Working 1');
 
         $this->loadRoutesFrom(__DIR__ . '/routes/nwt-restaurant.php');
+        Log::error('RestaurantServiceProvider Working 2');
 
         $this->loadViewsFrom(__DIR__.'/views', 'restaurant');
+        Log::error('RestaurantServiceProvider Working 3');
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        Log::error('RestaurantServiceProvider Working 4');
 
         $this->mergeConfigFrom(__DIR__.'/config/restaurant.php', 'restaurant');
+        Log::error('RestaurantServiceProvider Working 5');
 
         // Publish Config
         // $this->publishes([
@@ -32,6 +38,7 @@ class RestaurantServiceProvider extends ServiceProvider {
             __DIR__ . '/database/migrations/2024_02_27_054842_create_restaurant_types_table.php' =>
             database_path('/migrations/2024_02_27_054842_create_restaurant_types_table.php')
         ], 'nwt-restaurant');
+        Log::error('RestaurantServiceProvider Working 6');
 
 
     }
