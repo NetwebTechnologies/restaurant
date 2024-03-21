@@ -3,9 +3,9 @@
 namespace Netweb\Restaurant\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
-use Netweb\Restaurant\Models\RestaurantName;
+use Netweb\Restaurant\Models\RestaurantFood;
 
-class RestaurantNameRepository extends MyRepository
+class RestaurantFoodRepository extends MyRepository
 {
     public function __construct()
     {
@@ -14,6 +14,6 @@ class RestaurantNameRepository extends MyRepository
 
     public function setRepoModel() : Model
     {
-        return new RestaurantName;
+        return new RestaurantFood;
     }
 }

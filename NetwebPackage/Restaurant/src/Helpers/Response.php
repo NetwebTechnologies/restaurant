@@ -4,7 +4,6 @@ namespace Netweb\Restaurant\Helpers;
 
 class Response
 {
-    const TESTCONST = 1500;
     // INFORMATION RESPONSES
     public static $HTTP_CONTINUE            = 100;
     public static $HTTP_SWITCHING_PROTOCOLS = 101;

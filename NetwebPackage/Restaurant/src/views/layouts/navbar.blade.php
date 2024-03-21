@@ -13,10 +13,20 @@
 
             </ul>
 
+            <div class="routes-links" id="routesLinks">
+                <ul class="navbar-nav ms-auto">
+                    <li><a href="{{ url('/restaurant_types') }}" >Restaurant Type </a></li>
+                    <li><a href="{{ url('/restaurant_food_categories') }}" >Food Category</a></li>
+                    <li><a href="{{ url('/restaurant_foods') }}" >Restaurant Food</a></li>
+                    <li><a href="{{ url('/restaurants') }}" >Restaurant</a></li>
+                </ul>
+            </div>
+
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
+
                 <!-- Authentication Links -->
-                @guest
+                {{-- @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -46,14 +56,7 @@
                             </form>
                         </div>
                     </li>
-                @endguest
-            </ul>
-        </div>
-
-        <div class="routes-links" id="routesLinks">
-            <ul class="navbar-nav ms-auto">
-                <li><a href="{{ url('/restaurant_types') }}" >Restaurant Type </a></li>
-                <li><a href="{{ url('/restaurant-name') }}" >Restaurant Name</a></li>
+                @endguest --}}
             </ul>
         </div>
     </div>

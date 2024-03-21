@@ -1,0 +1,19 @@
+{
+    "name": "netweb/common-services",
+    "description": "This package used common functionality of services",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ankit Madaan",
+            "email": "ankitcoding1990@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Netweb\\CommonServices\\" : "src/"
+        }
+    }
+}

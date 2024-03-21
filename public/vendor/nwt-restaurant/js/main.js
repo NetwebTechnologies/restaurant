@@ -154,3 +154,15 @@ function get_modal_content(modal, route, method, title, data) {
         },
     });
 }
+
+$(function() {
+    $(document).on("input", ".isNumeric", function () {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
+    $(document).on("input", ".isAlpha", function () {
+        this.value = this.value.replace(/[^a-zA-Z .,-/]/g, "");
+    });
+    $(document).on("input", ".isAlphaNumeric", function () {
+        this.value = this.value.replace(/[^a-zA-Z0-9 .,-/]/g, "");
+    });
+});

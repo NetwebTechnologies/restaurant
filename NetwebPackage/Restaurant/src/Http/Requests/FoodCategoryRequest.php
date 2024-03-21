@@ -4,7 +4,7 @@ namespace Netweb\Restaurant\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RestaurantNameRequest extends FormRequest
+class FoodCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class RestaurantNameRequest extends FormRequest
     public function rules()
     {
         return [
-            'restaurant_name' => 'required',
-            'address'         => 'required',
-            'phone_number'    => 'required',
+            'name' => 'required',
+            'image' => 'required|image',
+            'description' => 'required',
         ];
     }
 }
